@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Ej 9: Cat Walk</title>
+  </head>
+  <body>
+    <a href="../index.html">volver</a>
+    <img
+      id="myCat"
+      style="position: absolute; left: 0px"
+      src="http://www.anniemation.com/clip_art/images/cat-walk.gif"
+    />
+    <br />
+    <img
+      id="myCat2"
+      style="position: absolute; left: 0px; top: 300px;"
+      src="http://www.anniemation.com/clip_art/images/cat-walk.gif"
+    />
+    <br />
+    <img
+      id="myCat3"
+      style="position: absolute; left: 0px; top: 600px"
+      src="http://www.anniemation.com/clip_art/images/cat-walk.gif"
+    />
+
+
+    <script>
+      var width = window.innerWidth
+      var left1 = 0;
+      var left2 = 0;
+      var left3 = 0;
+      var returning = false;
+      var myCat = document.getElementById('myCat');
+
+      var myCat2 = document.getElementById('myCat2');
+
+      var myCat3 = document.getElementById('myCat3');
+
+      function catWalk() {
+        left1 += 10
+        myCat.style.left = left1 + 'px';
+      }
+
+      function catWalk2() {
+        if (left2 >= width) left2 = 0;
+        left2 += 10
+        myCat2.style.left = left2 + 'px'
+      }
+
+      function catWalk3() {
+        if (left3 >= width) {
+          returning = true;
+          myCat3.style.transform = 'scaleX(-1)';
+        };
+
+        if(!returning) {
+          left3 += 10;
+        } else {
+          left3 -= 10;
+        }
+
+        if(left3 <= 0){
+          returning = false;
+          myCat3.style.transform = 'scaleX(1)'
+        }
+
+        myCat3.style.left = left3 + 'px'
+      }
+
+      setInterval(() => {
+        catWalk();
+        catWalk2()
+        catWalk3();
+      }, 50);
+
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Ejercicio 8 - Votaciones en gráfico</title>
+    <script src="./codigo.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  </head>
+
+  <body>
+    <a href="../index.html">volver</a>
+    <div class="container">
+      <h1>Votaciones</h1>
+      <!-- *** -->
+      <div class="container">
+        <button type="button" onclick="vote(0)">Socialistas</button>
+        <button type="button" onclick="vote(1)">Liberales</button>
+        <button type="button" onclick="vote(2)">Animalistas</button>
+        <button type="button" onclick="vote(3)">Centristas</button>
+        <button type="button" onclick="vote(4)">Ecologistas</button>
+        <button type="button" onclick="reset()">Reset</button>
+      </div>
+      <!-- *** -->
+      <div>Vuestro gráfico</div>
+      <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+    </div>
+  </body>
+
+  <script>
+    var partidos = [
+      'Socialistas',
+      'Liberales',
+      'Animalistas',
+      'Centristas',
+      'Ecologistas',
+    ];
+
+    var votos = [0, 0, 0, 0, 0];
+
+    var chart = new Chart("myChart", {
+        type: "pie",
+        data: {
+          labels: partidos,
+          datasets: [{
+            label: 'My First Dataset',
+            data: votos,
+            backgroundColor: [
+              'rgb(255, 99, 132)',
+              'rgb(54, 162, 235)',
+              'rgb(255, 205, 86)',
+              'rgb(34,139,34)',
+              'rgb(138,43,226)'
+            ],
+            hoverOffset: 4
+          }]
+        },
+        options: {
+          title: {
+            display: true,
+            text: "World Wide Wine Production"
+          }
+        }
+    });
+
+    function vote(index){
+        votos[index] += 1;
+
+        console.log(votos[index]);
+
+        chart.update();
+    }
+
+    function reset() {
+        for(let i = 0; i < votos.length; i++){
+          votos[i] = 0;
+        }
+
+        chart.update();
+    }
+  </script>
+</html>
